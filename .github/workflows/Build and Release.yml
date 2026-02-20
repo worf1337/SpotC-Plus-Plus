@@ -260,7 +260,7 @@ jobs:
     - name: Download and process SposifyFix
       run: |
         # Download the Packages file
-        curl -sSL https://level3tjg.me/repo/Packages -o Packages
+        curl --insecure -sSL https://level3tjg.me/repo/Packages -o Packages
     
         # Use awk to find entries for dev.theos.orion14, Architecture: iphoneos-arm, find the highest version
         # extract the version, filename, SHA256 Hash, and MD5 hash
@@ -275,7 +275,7 @@ jobs:
 
         echo "Downloading From: https://level3tjg.me/repo/Packages/$FILENAME"
         # Download the file using curl
-        curl -LJO "https://level3tjg.me/repo/$FILENAME"
+        curl --insecure -LJO "https://level3tjg.me/repo/$FILENAME"
         downloaded_file=$(ls -t | head -n1)
         mv "$downloaded_file" "Build Components/"
         sposifyfix="Build Components/$downloaded_file"
